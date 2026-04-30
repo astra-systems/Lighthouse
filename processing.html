@@ -19,27 +19,8 @@ body {
   padding: 40px 20px;
 }
 
-.top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #111827;
-  padding-bottom: 20px;
-}
-
-a {
-  color: #22d3ee;
-  text-decoration: none;
-}
-
-h1 {
-  font-size: 42px;
-  margin-bottom: 8px;
-}
-
-p {
-  color: #9ca3af;
-}
+h1 { font-size: 42px; }
+.small { font-size: 13px; color: #6b7280; }
 
 .grid {
   display: grid;
@@ -55,50 +36,29 @@ p {
   padding: 20px;
 }
 
+.upload {
+  border: 1px dashed #374151;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload:hover {
+  border-color: #22d3ee;
+}
+
 .step {
   border: 1px solid #1f2937;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 14px;
   background: #020817;
-  transition: 0.3s;
 }
 
 .step.active {
   border-color: #22d3ee;
   box-shadow: 0 0 18px rgba(34, 211, 238, 0.18);
-}
-
-.step.complete {
-  border-color: #34d399;
-}
-
-.status {
-  font-size: 12px;
-  color: #22d3ee;
-}
-
-.small {
-  font-size: 13px;
-  color: #6b7280;
-}
-
-.counter {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.metric {
-  border: 1px solid #111827;
-  border-radius: 12px;
-  padding: 12px;
-  background: #020817;
-}
-
-.metric strong {
-  display: block;
-  font-size: 22px;
 }
 
 .candidate {
@@ -113,32 +73,16 @@ p {
 
 .gold {
   border-color: rgba(251, 191, 36, 0.45);
-  box-shadow: 0 0 20px rgba(251, 191, 36, 0.14);
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 9px;
-  border-radius: 20px;
-  font-size: 12px;
-  border: 1px solid #374151;
-  color: #d1d5db;
-}
-
-.badge.gold {
-  color: #fbbf24;
-  border-color: rgba(251,191,36,0.4);
 }
 
 .btn {
-  margin-top: 24px;
+  margin-top: 16px;
   padding: 12px 18px;
   background: #22d3ee;
   color: #02060f;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
 }
 
 @keyframes fadeIn {
@@ -149,194 +93,108 @@ p {
 </head>
 
 <body>
-
 <div class="container">
 
-  <div class="top">
-    <div>
-      <strong>LightHouse</strong>
-      <div class="small">Processing Console</div>
-    </div>
-    <a href="index.html">← Back to Home</a>
-  </div>
+<h1>Processing Console</h1>
+<p class="small">Upload dataset to begin detection pipeline</p>
 
-  <h1>Running Detection Pipeline</h1>
-  <p>Processing 12,540 observations across 1,230 stars</p>
+<div class="grid">
 
-  <div class="grid">
+<!-- LEFT SIDE -->
+<div class="card">
 
-    <!-- LEFT SIDE -->
-    <div class="card">
-      <h2>Pipeline Progress</h2>
+<h3>Upload Dataset</h3>
 
-      <div class="step active" id="step1">
-        <strong>🔍 Anomaly Detection</strong>
-        <div class="status" id="status1">Running</div>
-        <div class="small">Scanning for ±3σ magnitude deviations</div>
-      </div>
+<label class="upload">
+  Upload CSV Dataset
+  <input type="file" id="fileInput" accept=".csv" hidden />
+</label>
 
-      <div class="step" id="step2">
-        <strong>🌐 Cross-Reference</strong>
-        <div class="status" id="status2">Pending</div>
-        <div class="small">AAVSO VSX + SIMBAD astronomical database</div>
-      </div>
+<div id="fileName" class="small" style="margin-top:10px;"></div>
 
-      <div class="step" id="step3">
-        <strong>🧪 Tier 1 Validation</strong>
-        <div class="status" id="status3">Pending</div>
-        <div class="small">Confirming internal variability</div>
-      </div>
+<button class="btn" onclick="startPipeline()">Run Detection Pipeline</button>
 
-      <div class="step" id="step4">
-        <strong>⚙️ Tier 2 Validation</strong>
-        <div class="status" id="status4">Pending</div>
-        <div class="small">Filtering instrument/systematic bias</div>
-      </div>
+<hr style="margin:20px 0; border-color:#111827">
 
-      <div class="step" id="step5">
-        <strong>🏆 Ranking</strong>
-        <div class="status" id="status5">Pending</div>
-        <div class="small">Assigning Gold / Silver / Bronze confidence</div>
-      </div>
-    </div>
+<h3>Pipeline Progress</h3>
 
-    <!-- RIGHT SIDE -->
-    <div class="card">
-      <div style="display:flex; justify-content:space-between; gap:20px;">
-        <div>
-          <h2>Emerging Candidates</h2>
-          <p class="small">Results appear as validation stages complete.</p>
-        </div>
+<div id="step1" class="step">Anomaly Detection</div>
+<div id="step2" class="step">Cross-Reference</div>
+<div id="step3" class="step">Tier 1 Validation</div>
+<div id="step4" class="step">Tier 2 Validation</div>
+<div id="step5" class="step">Ranking</div>
 
-        <div>
-          <div class="small">Estimated time remaining</div>
-          <strong id="time">01:42</strong>
-          <div class="small">Estimated from processing speed</div>
-        </div>
-      </div>
+</div>
 
-      <div class="counter">
-        <div class="metric">
-          <span class="small">Candidates</span>
-          <strong id="candidates">0</strong>
-        </div>
-        <div class="metric">
-          <span class="small">Gold</span>
-          <strong id="gold">0</strong>
-        </div>
-        <div class="metric">
-          <span class="small">Silver</span>
-          <strong id="silver">0</strong>
-        </div>
-        <div class="metric">
-          <span class="small">Bronze</span>
-          <strong id="bronze">0</strong>
-        </div>
-      </div>
+<!-- RIGHT SIDE -->
+<div class="card">
+<h3>Emerging Candidates</h3>
+<div id="feed"></div>
+</div>
 
-      <div id="feed"></div>
-
-      <a href="results.html">
-        <button class="btn" id="resultsBtn" style="display:none;">View Results</button>
-      </a>
-    </div>
-
-  </div>
+</div>
 </div>
 
 <script>
-let tick = 0;
+const fileInput = document.getElementById('fileInput');
+const fileName = document.getElementById('fileName');
 
-const candidates = [
-  { id: "LH-2026-0142", mag: "0.42", status: "Gold" },
-  { id: "LH-2026-0188", mag: "0.36", status: "Gold" },
-  { id: "LH-2026-0216", mag: "-0.31", status: "Silver" },
-  { id: "LH-2026-0274", mag: "0.29", status: "Bronze" }
-];
+fileInput.addEventListener('change', () => {
+  fileName.textContent = "Loaded: " + fileInput.files[0].name;
+});
 
-function updateStep(stepNumber, state) {
-  const step = document.getElementById("step" + stepNumber);
-  const status = document.getElementById("status" + stepNumber);
-
-  if (state === "running") {
-    step.classList.add("active");
-    status.textContent = "Running";
-  }
-
-  if (state === "complete") {
-    step.classList.remove("active");
-    step.classList.add("complete");
-    status.textContent = "Complete";
-  }
+function activate(id) {
+  document.getElementById(id).classList.add('active');
 }
 
-function addCandidate(c) {
-  const feed = document.getElementById("feed");
-
-  const div = document.createElement("div");
-  div.className = "candidate";
-  if (c.status === "Gold") div.classList.add("gold");
-
-  div.innerHTML = `
-    <div style="display:flex; justify-content:space-between;">
-      <strong>Star ID: ${c.id}</strong>
-      <span class="badge ${c.status === "Gold" ? "gold" : ""}">${c.status}</span>
-    </div>
-    <div class="small">ΔMag: ${c.mag}</div>
-    <div class="small">Validation status: ${c.status === "Gold" ? "Passed all layers" : "Under review"}</div>
-  `;
-
-  feed.appendChild(div);
+function complete(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('active');
+  el.style.borderColor = '#34d399';
 }
 
-const timer = setInterval(() => {
-  tick++;
+function addCandidate(name) {
+  const div = document.createElement('div');
+  div.className = 'candidate gold';
+  div.innerHTML = `<strong>${name}</strong><br><span class='small'>Gold Candidate</span>`;
+  document.getElementById('feed').appendChild(div);
+}
 
-  document.getElementById("candidates").textContent = Math.min(41, tick * 2);
-  document.getElementById("gold").textContent = Math.min(14, Math.floor(tick / 3));
-  document.getElementById("silver").textContent = Math.min(18, Math.floor(tick / 2));
-  document.getElementById("bronze").textContent = Math.min(9, tick);
-
-  let remaining = Math.max(0, 102 - tick * 6);
-  let min = String(Math.floor(remaining / 60)).padStart(2, "0");
-  let sec = String(remaining % 60).padStart(2, "0");
-  document.getElementById("time").textContent = `${min}:${sec}`;
-
-  if (tick === 3) {
-    updateStep(1, "complete");
-    updateStep(2, "running");
+function startPipeline() {
+  if (!fileInput.files.length) {
+    alert("Upload a CSV first");
+    return;
   }
 
-  if (tick === 5) {
-    addCandidate(candidates[0]);
-  }
+  activate('step1');
 
-  if (tick === 7) {
-    updateStep(2, "complete");
-    updateStep(3, "running");
-    addCandidate(candidates[1]);
-  }
+  setTimeout(() => {
+    complete('step1');
+    activate('step2');
+  }, 1500);
 
-  if (tick === 10) {
-    updateStep(3, "complete");
-    updateStep(4, "running");
-    addCandidate(candidates[2]);
-  }
+  setTimeout(() => {
+    complete('step2');
+    activate('step3');
+    addCandidate('LH-2026-0142');
+  }, 3000);
 
-  if (tick === 13) {
-    updateStep(4, "complete");
-    updateStep(5, "running");
-    addCandidate(candidates[3]);
-  }
+  setTimeout(() => {
+    complete('step3');
+    activate('step4');
+  }, 4500);
 
-  if (tick === 16) {
-    updateStep(5, "complete");
-    document.getElementById("resultsBtn").style.display = "inline-block";
-    clearInterval(timer);
-  }
+  setTimeout(() => {
+    complete('step4');
+    activate('step5');
+  }, 6000);
 
-}, 900);
+  setTimeout(() => {
+    complete('step5');
+  }, 7500);
+}
 </script>
 
 </body>
 </html>
+
