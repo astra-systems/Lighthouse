@@ -1,1 +1,299 @@
-<h1>Candidate Detail</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LightHouse Candidate Analysis</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #02060f;
+  color: #e5e7eb;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+a {
+  color: #22d3ee;
+  text-decoration: none;
+}
+
+.header {
+  border: 1px solid #1f2937;
+  background: #030b1a;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+.small {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 20px;
+  border: 1px solid rgba(251,191,36,0.35);
+  color: #fbbf24;
+  background: rgba(251,191,36,0.08);
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.section {
+  margin-top: 30px;
+  border: 1px solid #1f2937;
+  background: #030b1a;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.metric {
+  border: 1px solid #111827;
+  background: #020817;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+svg {
+  width: 100%;
+  border: 1px solid #111827;
+  background: #020817;
+  border-radius: 12px;
+}
+
+.check {
+  color: #d1d5db;
+  margin-bottom: 8px;
+}
+
+.btn {
+  padding: 11px 16px;
+  border-radius: 8px;
+  border: 1px solid #22d3ee;
+  background: #22d3ee;
+  color: #02060f;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: #22d3ee;
+}
+
+.lock {
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #6b7280;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="results.html">← Back to Results</a>
+
+<br><br>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>LH-2026-0142</h1>
+    <p class="small">RA / Dec: 05h 34m 31.9s / +22° 00′ 52″</p>
+    <p>
+      ΔMag: 0.42<br>
+      Σ deviation: 4.12σ
+    </p>
+    <p class="small">Detection threshold: 3σ</p>
+  </div>
+
+  <div style="text-align:right;">
+    <span class="badge">Gold — Confidence 96%</span>
+    <p class="small">Derived from validation layers</p>
+    <p class="small">Based on ±3σ detection and two-tier validation model</p>
+    <p>Validation Score: 3/3</p>
+    <p class="small">Catalog Status: No VSX / SIMBAD match</p>
+    <p class="small">Validation derived from two-tier analysis (variability + bias filtering)</p>
+  </div>
+</div>
+
+<!-- LIGHT CURVE -->
+<div class="section">
+  <h2>Light Curve</h2>
+  <p class="small">Magnitude plotted over time with ±3σ detection thresholds.</p>
+
+  <svg viewBox="0 0 700 320">
+    <!-- axes -->
+    <line x1="60" y1="260" x2="660" y2="260" stroke="#374151"/>
+    <line x1="60" y1="40" x2="60" y2="260" stroke="#374151"/>
+
+    <!-- threshold lines -->
+    <line x1="60" y1="95" x2="660" y2="95" stroke="#64748b" stroke-dasharray="5"/>
+    <line x1="60" y1="210" x2="660" y2="210" stroke="#64748b" stroke-dasharray="5"/>
+
+    <text x="70" y="88" fill="#94a3b8" font-size="12">+3σ threshold</text>
+    <text x="70" y="203" fill="#94a3b8" font-size="12">−3σ threshold</text>
+
+    <!-- axis labels -->
+    <text x="340" y="300" fill="#64748b" font-size="12">Time (JD)</text>
+    <text x="20" y="165" fill="#64748b" font-size="12" transform="rotate(-90 20 165)">Magnitude</text>
+
+    <!-- observations -->
+    <circle cx="90" cy="170" r="4" fill="#22d3ee"/>
+    <circle cx="130" cy="168" r="4" fill="#22d3ee"/>
+    <circle cx="170" cy="174" r="4" fill="#22d3ee"/>
+    <circle cx="210" cy="166" r="4" fill="#22d3ee"/>
+    <circle cx="250" cy="172" r="4" fill="#22d3ee"/>
+    <circle cx="290" cy="90" r="6" fill="#fbbf24"/>
+    <circle cx="330" cy="169" r="4" fill="#22d3ee"/>
+    <circle cx="370" cy="171" r="4" fill="#22d3ee"/>
+    <circle cx="410" cy="165" r="4" fill="#22d3ee"/>
+    <circle cx="450" cy="173" r="4" fill="#22d3ee"/>
+    <circle cx="490" cy="168" r="4" fill="#22d3ee"/>
+    <circle cx="530" cy="170" r="4" fill="#22d3ee"/>
+    <circle cx="570" cy="167" r="4" fill="#22d3ee"/>
+
+    <!-- legend -->
+    <circle cx="520" cy="45" r="4" fill="#22d3ee"/>
+    <text x="532" y="49" fill="#9ca3af" font-size="12">Observations</text>
+    <circle cx="520" cy="65" r="5" fill="#fbbf24"/>
+    <text x="532" y="69" fill="#9ca3af" font-size="12">Anomalous point</text>
+  </svg>
+</div>
+
+<!-- VALIDATION ANALYSIS -->
+<div class="section">
+  <h2>Validation Analysis</h2>
+
+  <div class="grid">
+    <div>
+      <h3>Tier 1 — Internal Variability</h3>
+      <p class="small">Confirms variability is intrinsic to the source rather than random fluctuation.</p>
+      <div class="check">✔ Signal consistency across timestamps</div>
+      <div class="check">✔ Magnitude deviation exceeds noise envelope</div>
+      <div class="check">✔ Repeatability confirmed</div>
+      <p class="small">Signal consistency: High (confidence &gt;95%)</p>
+    </div>
+
+    <div>
+      <h3>Tier 2 — Instrument / Systematic Bias</h3>
+      <p class="small">Filters instrument artifacts and systematic observational bias.</p>
+      <div class="check">✔ No instrument drift pattern detected</div>
+      <div class="check">✔ No correlated noise artifacts</div>
+      <div class="check">✔ Cross-observation stability</div>
+      <p class="small">Noise likelihood: Low (&lt;5%)</p>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:22px;">
+    <h3>LightHouse Interpretation</h3>
+    <p class="small">
+      This candidate exhibits variability exceeding ±3σ detection thresholds with consistent behavior across observations.
+      No known catalog match was identified, and no significant instrument or systematic bias patterns were detected.
+      The signal is consistent with intrinsic stellar variability and is a strong candidate for further observational follow-up.
+    </p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="section">
+  <h2>Statistical Summary</h2>
+
+  <div class="grid">
+    <div class="metric">
+      <strong>Peak ΔMag</strong>
+      <p>0.42</p>
+    </div>
+    <div class="metric">
+      <strong>Mean Magnitude</strong>
+      <p>14.82</p>
+    </div>
+    <div class="metric">
+      <strong>Standard Deviation</strong>
+      <p>🔒 Pro</p>
+    </div>
+    <div class="metric">
+      <strong>SNR</strong>
+      <p>🔒 Pro</p>
+    </div>
+  </div>
+
+  <p class="lock">Additional statistical metrics available in Pro.</p>
+</div>
+
+<!-- CATALOG CHECK -->
+<div class="section">
+  <h2>Catalog Check</h2>
+  <p>AAVSO VSX: No match</p>
+  <p>SIMBAD: No match</p>
+  <p class="small">Closest known object: not available in current preview.</p>
+</div>
+
+<!-- CONFIDENCE DRIVERS -->
+<div class="section">
+  <h2>Confidence Drivers</h2>
+
+  <div class="grid">
+    <div class="metric">
+      <strong>Variability strength</strong>
+      <p>High</p>
+    </div>
+    <div class="metric">
+      <strong>Noise likelihood</strong>
+      <p>Low</p>
+    </div>
+    <div class="metric">
+      <strong>Catalog novelty</strong>
+      <p>High</p>
+    </div>
+    <div class="metric">
+      <strong>Validation model</strong>
+      <p>Two-tier</p>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIONS -->
+<div class="section">
+  <h2>Actions</h2>
+  <button class="btn">Export Candidate</button>
+  <button class="btn secondary">Add to Watchlist</button>
+  <button class="btn secondary">View in Dataset</button>
+  <button class="btn secondary">Compare Across Runs 🔒</button>
+</div>
+
+<div class="footer">
+  Candidate status is based on statistical thresholds and validation models. Further observational verification is recommended.
+</div>
+
+</div>
+</body>
+</html>
