@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LightHouse</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #02060f;
+  color: #e5e7eb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #9ca3af;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.primary {
+  background: #22d3ee;
+  color: black;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #22d3ee;
+  color: #22d3ee;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.visual {
+  border: 1px solid #111;
+  height: 300px;
+  background: linear-gradient(180deg, #02060f, #040d1f);
+  border-radius: 12px;
+}
+
+.section {
+  margin-top: 100px;
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.step {
+  border: 1px solid #111;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #030b1a;
+  transition: 0.2s;
+}
+
+.step:hover {
+  border-color: #22d3ee;
+  box-shadow: 0 0 12px rgba(34,211,238,0.15);
+}
+
+.validation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #111;
+  padding: 20px;
+  border-radius: 10px;
+  background: #030b1a;
+}
+
+.gold { color: #fbbf24; }
+.silver { color: #e5e7eb; }
+.bronze { color: #9ca3af; }
+.fail { color: #ef4444; }
+
+ul {
+  padding-left: 20px;
+  color: #9ca3af;
+}
+
+.small {
+  font-size: 13px;
+  color: #6b7280;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>
+      Upload observatory data.<br>
+      Detect anomalies.<br>
+      Validate candidates.<br>
+      Export discoveries.
+    </h1>
+
+    <p>
+      Identify &gt;3σ magnitude anomalies, cross-check against known catalogs,
+      and rank candidates with a two-tier validation system.
+    </p>
+
+    <br>
+
+    <button class="btn primary">Enter Dashboard</button>
+    <button class="btn secondary">View Pipeline</button>
+  </div>
+
+  <div class="visual"></div>
+</div>
+
+<!-- PIPELINE -->
+<div class="section">
+  <h2>From Raw Data to Ranked Candidates</h2>
+
+  <div class="pipeline">
+    <div class="step">Upload Data<br><span class="small">CSV now, FITS-ready</span></div>
+    <div class="step">Detect<br><span class="small">±3σ magnitude shifts</span></div>
+    <div class="step">Cross-Ref<br><span class="small">VSX + SIMBAD</span></div>
+    <div class="step">Validate<br><span class="small">Variability + bias</span></div>
+    <div class="step">Rank<br><span class="small">Gold / Silver / Bronze</span></div>
+    <div class="step">Export<br><span class="small">CSV / JSON</span></div>
+  </div>
+</div>
+
+<!-- VALIDATION -->
+<div class="section">
+  <h2>Built for Scientific Confidence</h2>
+
+  <div class="validation">
+    <div>
+      <strong>Tier 1</strong>
+      <ul>
+        <li>Confirms true internal variability</li>
+        <li>Filters transient noise</li>
+      </ul>
+    </div>
+
+    <div>
+      <strong>Tier 2</strong>
+      <ul>
+        <li>Removes instrument sensitivity effects</li>
+        <li>Detects systematic bias</li>
+      </ul>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="small">
+    <span class="gold">● Gold</span> — Passed all validation layers<br>
+    <span class="silver">● Silver</span> — Minor uncertainty<br>
+    <span class="bronze">● Bronze</span> — Preliminary signal<br>
+    <span class="fail">● Fail</span> — Rejected or inconclusive
+  </div>
+</div>
+
+<!-- WHY -->
+<div class="section">
+  <h2>Designed for Real Observatory Workflows</h2>
+
+  <ul>
+    <li>Reduces manual anomaly scanning</li>
+    <li>Filters false positives automatically</li>
+    <li>Produces exportable candidate datasets</li>
+    <li>Scales toward astro-spatial discovery</li>
+  </ul>
+</div>
+
+<!-- PRICING -->
+<div class="section">
+  <h2>Flexible Access</h2>
+
+  <div class="pricing">
+    <div class="card">
+      <strong>Free</strong>
+      <ul>
+        <li>Limited runs</li>
+        <li>Basic detection</li>
+        <li>Small datasets</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <strong>Pro</strong>
+      <ul>
+        <li>Full validation</li>
+        <li>Full dataset processing</li>
+        <li>Export tools</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <strong>Research</strong>
+      <ul>
+        <li>Cross-dataset insights</li>
+        <li>Clustering tools</li>
+        <li>Priority processing</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <strong>Observatory</strong>
+      <ul>
+        <li>Institutional access</li>
+        <li>Large-scale datasets</li>
+        <li>Multi-user</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section">
+  <h2>Start analyzing your data.</h2>
+
+  <button class="btn primary">Enter Dashboard</button>
+  <button class="btn secondary">Request Access</button>
+</div>
+
+</div>
+
+</body>
+</html>
