@@ -1,1 +1,351 @@
-<h1>Detection Results</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LightHouse Results</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #02060f;
+  color: #e5e7eb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.top {
+  border: 1px solid #1f2937;
+  background: #030b1a;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+h2 {
+  margin-top: 50px;
+}
+
+p, .small {
+  color: #9ca3af;
+}
+
+.small {
+  font-size: 13px;
+}
+
+.btn {
+  padding: 11px 16px;
+  border-radius: 8px;
+  border: 1px solid #22d3ee;
+  background: #22d3ee;
+  color: #02060f;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: #22d3ee;
+}
+
+.gold-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.gold-card {
+  border: 1px solid rgba(251,191,36,0.35);
+  background: #030b1a;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 20px;
+  border: 1px solid #374151;
+  padding: 4px 9px;
+  font-size: 12px;
+}
+
+.badge.gold {
+  color: #fbbf24;
+  border-color: rgba(251,191,36,0.35);
+}
+
+.context {
+  margin-top: 36px;
+  border: 1px solid #1f2937;
+  background: #030b1a;
+  border-radius: 14px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.filter {
+  padding: 7px 12px;
+  border-radius: 20px;
+  border: 1px solid #374151;
+  background: #020817;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.filter.active {
+  border-color: #22d3ee;
+  color: #22d3ee;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th {
+  color: #9ca3af;
+  text-align: left;
+  border-bottom: 1px solid #1f2937;
+  padding: 12px;
+  cursor: pointer;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #111827;
+}
+
+tr:hover {
+  background: rgba(34,211,238,0.04);
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #030b1a;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  padding: 24px;
+  max-width: 420px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- TOP BANNER -->
+  <div class="top">
+    <div>
+      <h1>Detection Complete — 14 Novel Candidates Identified</h1>
+      <p>Ranked by validation confidence and catalog novelty.</p>
+      <div class="small">
+        Dataset: observatory_run_0426.csv<br>
+        Job ID: LH-7X2A-Q91B<br>
+        Total stars analyzed: 1,230
+      </div>
+    </div>
+
+    <div>
+      <button class="btn" onclick="openModal()">Export Report</button>
+      <a href="processing.html"><button class="btn secondary">Run Again</button></a>
+    </div>
+  </div>
+
+  <!-- GOLD CANDIDATES -->
+  <h2>Gold Candidates</h2>
+
+  <div class="gold-grid">
+    <div class="gold-card">
+      <span class="badge gold">Gold</span>
+      <h3>LH-2026-0142</h3>
+      <p class="small">RA / Dec: 05h 34m 31.9s / +22° 00′ 52″</p>
+      <p>ΔMag: 0.42<br>Σ deviation: 4.12σ</p>
+      <p class="small">Validation score: 3/3<br>No VSX / SIMBAD match</p>
+      <p class="small">
+        ✔ Internal variability confirmed<br>
+        ✔ No catalog match<br>
+        ✔ Low systematic bias
+      </p>
+      <a href="candidate.html"><button class="btn secondary">View Analysis</button></a>
+    </div>
+
+    <div class="gold-card">
+      <span class="badge gold">Gold</span>
+      <h3>LH-2026-0188</h3>
+      <p class="small">RA / Dec: 06h 12m 09.4s / +19° 42′ 11″</p>
+      <p>ΔMag: 0.36<br>Σ deviation: 3.91σ</p>
+      <p class="small">Validation score: 3/3<br>No VSX / SIMBAD match</p>
+      <p class="small">
+        ✔ Internal variability confirmed<br>
+        ✔ No catalog match<br>
+        ✔ Low systematic bias
+      </p>
+      <a href="candidate.html"><button class="btn secondary">View Analysis</button></a>
+    </div>
+  </div>
+
+  <!-- VALIDATION CONTEXT -->
+  <div class="context">
+    <div>
+      <strong>Detection threshold</strong>
+      <p class="small">±3σ magnitude deviation</p>
+    </div>
+    <div>
+      <strong>Validation method</strong>
+      <p class="small">Two-tier system: internal variability + bias filtering</p>
+    </div>
+    <div>
+      <strong>Catalog cross-reference</strong>
+      <p class="small">AAVSO VSX<br>SIMBAD</p>
+    </div>
+  </div>
+
+  <!-- FULL TABLE -->
+  <h2>Full Candidate Table</h2>
+
+  <div class="filters">
+    <button class="filter active" onclick="filterTable('All', this)">All</button>
+    <button class="filter" onclick="filterTable('Gold', this)">Gold</button>
+    <button class="filter" onclick="filterTable('Silver', this)">Silver</button>
+    <button class="filter" onclick="filterTable('Bronze', this)">Bronze</button>
+    <button class="filter" onclick="filterTable('Novel', this)">Novel only</button>
+    <button class="filter" onclick="filterTable('High', this)">High Confidence</button>
+  </div>
+
+  <table id="candidateTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Rank</th>
+        <th>Confidence</th>
+        <th title="Derived from validation layers (variability + bias filtering)">Confidence (%)</th>
+        <th>Star ID</th>
+        <th>RA</th>
+        <th>Dec</th>
+        <th>ΔMag</th>
+        <th>Σ deviation</th>
+        <th>Catalog match</th>
+        <th>Tier 1</th>
+        <th>Tier 2</th>
+        <th>Export</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-confidence="Gold" data-score="96" data-novel="true" onclick="location.href='candidate.html'">
+        <td>1</td><td>Gold</td><td>96%</td><td>LH-2026-0142</td><td>05h 34m 31.9s</td><td>+22° 00′ 52″</td><td>0.42</td><td>4.12σ</td><td>No match</td><td>Pass</td><td>Pass</td><td>Ready</td>
+      </tr>
+      <tr data-confidence="Gold" data-score="91" data-novel="true" onclick="location.href='candidate.html'">
+        <td>2</td><td>Gold</td><td>91%</td><td>LH-2026-0188</td><td>06h 12m 09.4s</td><td>+19° 42′ 11″</td><td>0.36</td><td>3.91σ</td><td>No match</td><td>Pass</td><td>Pass</td><td>Ready</td>
+      </tr>
+      <tr data-confidence="Silver" data-score="84" data-novel="true" onclick="location.href='candidate.html'">
+        <td>3</td><td>Silver</td><td>84%</td><td>LH-2026-0216</td><td>04h 58m 44.2s</td><td>+17° 13′ 08″</td><td>-0.31</td><td>3.47σ</td><td>No match</td><td>Pass</td><td>Review</td><td>Ready</td>
+      </tr>
+      <tr data-confidence="Bronze" data-score="67" data-novel="true" onclick="location.href='candidate.html'">
+        <td>4</td><td>Bronze</td><td>67%</td><td>LH-2026-0274</td><td>07h 22m 18.8s</td><td>+12° 46′ 31″</td><td>0.29</td><td>3.18σ</td><td>No match</td><td>Review</td><td>Pending</td><td>Queued</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    Results represent candidate detections based on statistical thresholds and validation models. Further observational verification is recommended.
+  </div>
+
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h2>Export Results</h2>
+    <p>Basic export is available on Free.</p>
+    <p class="small">
+      Full export includes all candidates, validation metrics, statistical summary, and confidence scores.
+    </p>
+    <button class="btn">Basic export</button>
+    <button class="btn secondary">Upgrade to Export Full Report 🔒</button>
+    <br><br>
+    <button class="filter" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+function filterTable(type, btn) {
+  document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  document.querySelectorAll("#candidateTable tbody tr").forEach(row => {
+    const confidence = row.dataset.confidence;
+    const score = Number(row.dataset.score);
+    const novel = row.dataset.novel === "true";
+
+    let show = true;
+
+    if (type === "Gold") show = confidence === "Gold";
+    if (type === "Silver") show = confidence === "Silver";
+    if (type === "Bronze") show = confidence === "Bronze";
+    if (type === "Novel") show = novel;
+    if (type === "High") show = confidence === "Gold" || score >= 84;
+
+    row.style.display = show ? "" : "none";
+  });
+}
+
+function sortTable(col) {
+  const tbody = document.querySelector("#candidateTable tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+
+  rows.sort((a,b) => {
+    return Number(a.children[col].textContent) - Number(b.children[col].textContent);
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+}
+</script>
+
+</body>
+</html>
